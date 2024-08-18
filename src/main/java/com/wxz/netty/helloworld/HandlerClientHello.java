@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
  * @date 18:17 2024/8/18
  */
 @Slf4j
-public class HandleClientHello extends SimpleChannelInboundHandler<ByteBuf>
+public class HandlerClientHello extends SimpleChannelInboundHandler<ByteBuf>
 {
     /**
      * 处理接收到的消息
@@ -26,7 +26,7 @@ public class HandleClientHello extends SimpleChannelInboundHandler<ByteBuf>
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf) throws Exception
     {
-        log.debug("接收到的消息：{}", byteBuf.toString(CharsetUtil.UTF_8));
+        log.info("接收到的消息：{}", byteBuf.toString(CharsetUtil.UTF_8));
     }
 
     /**
@@ -40,7 +40,7 @@ public class HandleClientHello extends SimpleChannelInboundHandler<ByteBuf>
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception
     {
-        log.debug(cause.getMessage());
+        log.info(cause.getMessage());
         ctx.close();
     }
 }
