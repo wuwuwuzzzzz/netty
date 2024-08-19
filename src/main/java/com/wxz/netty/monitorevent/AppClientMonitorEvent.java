@@ -1,13 +1,11 @@
 package com.wxz.netty.monitorevent;
 
 import io.netty.bootstrap.Bootstrap;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.util.CharsetUtil;
 
 import java.net.InetSocketAddress;
 
@@ -27,6 +25,11 @@ public class AppClientMonitorEvent
     {
         this.host = host;
         this.port = port;
+    }
+
+    public static void main(String[] args) throws Exception
+    {
+        new AppClientMonitorEvent("127.0.0.1", 8080).run();
     }
 
     /**
@@ -68,10 +71,5 @@ public class AppClientMonitorEvent
         {
             group.shutdownGracefully().sync();
         }
-    }
-
-    public static void main(String[] args) throws Exception
-    {
-        new AppClientMonitorEvent("127.0.0.1", 8080).run();
     }
 }
