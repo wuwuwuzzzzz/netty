@@ -4,6 +4,7 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.FixedLengthFrameDecoder;
+import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 
@@ -19,9 +20,11 @@ public class InitializerClientEnDeCoder extends ChannelInitializer<SocketChannel
     protected void initChannel(SocketChannel socketChannel) throws Exception
     {
         ChannelPipeline pipeline = socketChannel.pipeline();
-        pipeline.addLast("framer", new FixedLengthFrameDecoder(CommonTools.FIXEDLENGTHFRAME_LENGTH)); // 定长解码器
+//        pipeline.addLast("framer", new FixedLengthFrameDecoder(CommonTools.FIXEDLENGTHFRAME_LENGTH)); // 定长解码器
+        pipeline.addLast("framer", new LineBasedFrameDecoder(CommonTools.LINEBASEFRAME_LENGTH, true, true)); // 定长解码器
         pipeline.addLast("decoder", new StringDecoder());
         pipeline.addLast("encoder", new StringEncoder());
-        pipeline.addLast(new HandlerClientFixedLength()); // 自定义业务逻辑 handler
+//        pipeline.addLast(new HandlerClientFixedLength()); // 自定义业务逻辑 handler
+        pipeline.addLast(new HandlerClientLineBase()); // 自定义业务逻辑 handler
     }
 }

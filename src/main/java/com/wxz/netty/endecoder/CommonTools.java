@@ -9,6 +9,7 @@ package com.wxz.netty.endecoder;
 public class CommonTools
 {
     public static final int FIXEDLENGTHFRAME_LENGTH = 256; // 定长解码器 FixedLengthFrameDecoder 对应的消息长度
+    public static final int LINEBASEFRAME_LENGTH = 64; // 行解码器最大长度
 
     /**
      * 生成指定长度的字符串
